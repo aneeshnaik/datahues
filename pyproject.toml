@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datahues"
+version = "0.1.0"
+description = "Colour management utilities for data visualisations"
+requires-python = ">=3.10"
+dependencies = []
