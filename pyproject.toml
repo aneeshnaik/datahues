@@ -6,5 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "datahues"
 version = "0.1.0"
 description = "Colour management utilities for data visualisations"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools_scm]
