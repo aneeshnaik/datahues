@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64", "setuptools_scm>=8"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -11,5 +11,3 @@ dependencies = []
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-
-[tool.setuptools_scm]
