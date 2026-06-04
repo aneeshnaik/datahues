@@ -1,5 +1,6 @@
 numpy>=2.4
 scipy>=1.17
+matplotlib>=3.9
 pytest>=9.0
 coverage>=7.14
 coveralls>=4.1
