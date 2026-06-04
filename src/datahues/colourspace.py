@@ -103,7 +103,7 @@ def _lrgb_to_srgb(c: np.ndarray) -> np.ndarray:
 def _srgb_to_hex(srgb: np.ndarray) -> str:
     """Convert sRGB array in [0.0, 1.0] to hex colour code '#RRGGBB'."""
     _check_valid_rgb(srgb)
-    r, g, b = (int(c * 255) for c in srgb)
+    r, g, b = (int(round(c * 255)) for c in srgb)
     return f"#{r:02X}{g:02X}{b:02X}"
 
 
