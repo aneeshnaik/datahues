@@ -1,42 +1,11 @@
 import numpy as np
 import warnings
 from matplotlib.colors import LinearSegmentedColormap
+from .utils import _check_valid_hex
 from .colourspace import (
     _hex_to_oklab,
     _oklab_to_hex,
 )
-
-
-def _check_valid_hex(hex: str) -> None:
-    """
-    Validate that input string is a valid hex colour code.
-
-    Checks that the input is a string in the format '#RRGGBB' with valid
-    hexadecimal digits. Raises error if not.
-
-    Parameters
-    ----------
-    hex : str
-        Hex colour code to validate.
-
-    Returns
-    -------
-    None
-
-    Raises
-    ------
-    ValueError
-        If hex is not a string, doesn't start with '#', isn't exactly 7
-        characters long, or contains invalid hexadecimal digits.
-    """
-    if not isinstance(hex, str):
-        raise ValueError("Hex must be a string.")
-    if not hex.startswith('#') or len(hex) != 7:
-        raise ValueError("Hex must start with '#' and be 7 characters long.")
-    try:
-        int(hex[1:], 16)
-    except ValueError:
-        raise ValueError("Hex must contain valid hexadecimal digits.")
 
 
 def generate_hex_list(
