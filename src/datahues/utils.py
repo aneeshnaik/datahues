@@ -55,8 +55,12 @@ def _check_valid_rgb(rgb: np.ndarray) -> None:
     ValueError
         If rgb is not numpy array of 3 floats or any value outside [0.0, 1.0].
     """
-    if not isinstance(rgb, np.ndarray) or rgb.shape != (3,):
-        raise ValueError("RGB must be a numpy array of 3 values.")
+    if not isinstance(rgb, np.ndarray):
+        raise ValueError("RGB must be a numpy array.")
+    if rgb.shape != (3,):
+        raise ValueError("RGB must be a numpy array length 3.")
+    if not np.issubdtype(rgb.dtype, np.number):
+        raise ValueError("RGB must have a numeric dtype.")
     if not np.all((rgb >= 0.0) & (rgb <= 1.0)):
         raise ValueError("RGB values must be in [0.0, 1.0].")
 
@@ -82,8 +86,12 @@ def _check_valid_xyz(xyz: np.ndarray) -> None:
     ValueError
         If xyz is not a numpy array of 3 floats or any value is negative.
     """
-    if not isinstance(xyz, np.ndarray) or xyz.shape != (3,):
-        raise ValueError("XYZ must be a numpy array of 3 values.")
+    if not isinstance(xyz, np.ndarray):
+        raise ValueError("XYZ must be a numpy array.")
+    if xyz.shape != (3,):
+        raise ValueError("XYZ must be a numpy array length 3.")
+    if not np.issubdtype(xyz.dtype, np.number):
+        raise ValueError("XYZ must have a numeric dtype.")
     if np.any(xyz < 0.0):
         raise ValueError("XYZ values must be non-negative.")
 
@@ -112,7 +120,11 @@ def _check_valid_lab(lab: np.ndarray) -> None:
     ValueError
         If lab is not a numpy array of 3 floats or L is outside [0.0, 1.0].
     """
-    if not isinstance(lab, np.ndarray) or lab.shape != (3,):
-        raise ValueError("Oklab must be a numpy array of 3 values.")
+    if not isinstance(lab, np.ndarray):
+        raise ValueError("Oklab must be a numpy array.")
+    if lab.shape != (3,):
+        raise ValueError("Oklab must be a numpy array length 3.")
+    if not np.issubdtype(lab.dtype, np.number):
+        raise ValueError("Oklab must have a numeric dtype.")
     if not (0.0 <= lab[0] <= 1.0):
         raise ValueError("Oklab L value must be in [0.0, 1.0].")

@@ -1,5 +1,8 @@
 import pytest
-from datahues.utils import _check_valid_hex
+import numpy as np
+from datahues.utils import (
+    _check_valid_hex, _check_valid_rgb, _check_valid_xyz, _check_valid_lab
+)
 
 
 ###############################################################################
@@ -39,6 +42,135 @@ def test_invalid_hex_bad_characters():
         _check_valid_hex("#GGGGGG")
 
 
-# TODO tests for _check_valid_rgb function
-# TODO tests for _check_valid_xyz function
-# TODO tests for _check_valid_lab function
+###############################################################################
+# Tests for _check_valid_rgb function
+###############################################################################
+
+
+def test_valid_rgb():
+    """Valid RGB arrays should not raise an error."""
+    _check_valid_rgb(np.array([0.0, 0.5, 1.0]))
+    _check_valid_rgb(np.array([1.0, 1.0, 1.0]))
+    _check_valid_rgb(np.array([0.0, 0.0, 0.0]))
+
+
+def test_invalid_rgb_not_array():
+    """Non-array input should raise ValueError."""
+    with pytest.raises(ValueError, match="RGB must be a numpy array"):
+        _check_valid_rgb([0.0, 0.5, 1.0])
+
+
+def test_invalid_rgb_wrong_shape():
+    """RGB arrays with wrong shape should raise ValueError."""
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_rgb(np.array([0.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_rgb(np.array([0.0, 0.5, 1.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_rgb(np.array([[0.0, 0.5, 1.0]]))
+
+
+def test_invalid_rgb_out_of_range():
+    """RGB values outside [0.0, 1.0] should raise ValueError."""
+    with pytest.raises(ValueError, match="RGB values must be in"):
+        _check_valid_rgb(np.array([-0.1, 0.5, 1.0]))
+    with pytest.raises(ValueError, match="RGB values must be in"):
+        _check_valid_rgb(np.array([0.0, 0.5, 1.1]))
+
+
+def test_invalid_rgb_non_numeric():
+    """RGB arrays with non-numeric values should raise ValueError."""
+    with pytest.raises(ValueError, match="RGB must have a numeric dtype"):
+        _check_valid_rgb(np.array([0.0, "0.5", 1.0]))
+    with pytest.raises(ValueError, match="RGB must have a numeric dtype"):
+        _check_valid_rgb(np.array([0.0, None, 1.0]))
+
+
+###############################################################################
+# Tests for _check_valid_xyz function
+###############################################################################
+
+
+def test_valid_xyz():
+    """Valid XYZ arrays should not raise an error."""
+    _check_valid_xyz(np.array([0.0, 0.5, 1.0]))
+    _check_valid_xyz(np.array([1.5, 1.0, 1.0]))
+    _check_valid_xyz(np.array([0.0, 0.0, 0.0]))
+
+
+def test_invalid_xyz_not_array():
+    """Non-array input should raise ValueError."""
+    with pytest.raises(ValueError, match="XYZ must be a numpy array"):
+        _check_valid_xyz([0.0, 0.5, 1.0])
+
+
+def test_invalid_xyz_wrong_shape():
+    """XYZ arrays with wrong shape should raise ValueError."""
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_xyz(np.array([0.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_xyz(np.array([0.0, 0.5, 1.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_xyz(np.array([[0.0, 0.5, 1.0]]))
+
+
+def test_invalid_xyz_negative_values():
+    """XYZ values outside [0.0, ∞) should raise ValueError."""
+    with pytest.raises(ValueError, match="XYZ values must be non-negative"):
+        _check_valid_xyz(np.array([-0.1, 0.5, 1.0]))
+    with pytest.raises(ValueError, match="XYZ values must be non-negative"):
+        _check_valid_xyz(np.array([0.0, -0.5, 1.0]))
+    with pytest.raises(ValueError, match="XYZ values must be non-negative"):
+        _check_valid_xyz(np.array([0.0, 0.5, -1.0]))
+
+
+def test_invalid_xyz_non_numeric():
+    """XYZ arrays with non-numeric values should raise ValueError."""
+    with pytest.raises(ValueError, match="XYZ must have a numeric dtype"):
+        _check_valid_xyz(np.array([0.0, "0.5", 1.0]))
+    with pytest.raises(ValueError, match="XYZ must have a numeric dtype"):
+        _check_valid_xyz(np.array([0.0, None, 1.0]))
+
+
+###############################################################################
+# Tests for _check_valid_lab function
+###############################################################################
+
+
+def test_valid_lab():
+    """Valid Oklab arrays should not raise an error."""
+    _check_valid_lab(np.array([0.0, 0.5, 1.0]))
+    _check_valid_lab(np.array([1.0, -0.5, 0.5]))
+    _check_valid_lab(np.array([0.5, 0.0, -0.5]))
+
+
+def test_invalid_lab_not_array():
+    """Non-array input should raise ValueError."""
+    with pytest.raises(ValueError, match="Oklab must be a numpy array"):
+        _check_valid_lab([0.0, 0.5, 1.0])
+
+
+def test_invalid_lab_wrong_shape():
+    """Oklab arrays with wrong shape should raise ValueError."""
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_lab(np.array([0.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_lab(np.array([0.0, 0.5, 1.0, 0.5]))
+    with pytest.raises(ValueError, match="numpy array length 3"):
+        _check_valid_lab(np.array([[0.0, 0.5, 1.0]]))
+
+
+def test_invalid_lab_L_out_of_range():
+    """Oklab L values outside [0.0, 1.0] should raise ValueError."""
+    with pytest.raises(ValueError, match="Oklab L value must be in"):
+        _check_valid_lab(np.array([-0.1, 0.5, 1.0]))
+    with pytest.raises(ValueError, match="Oklab L value must be in"):
+        _check_valid_lab(np.array([1.1, 0.5, 1.0]))
+
+
+def test_invalid_lab_non_numeric():
+    """Oklab arrays with non-numeric values should raise ValueError."""
+    with pytest.raises(ValueError, match="Oklab must have a numeric dtype"):
+        _check_valid_lab(np.array([0.0, "0.5", 1.0]))
+    with pytest.raises(ValueError, match="Oklab must have a numeric dtype"):
+        _check_valid_lab(np.array([0.0, None, 1.0]))
