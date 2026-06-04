@@ -1,4 +1,4 @@
-from .utils import generate_hex_list, generate_cmap
+from .ramp import generate_hex_list, generate_cmap
 from importlib.metadata import version
 
 __version__ = version("datahues")
