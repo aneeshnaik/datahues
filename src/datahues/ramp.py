@@ -50,6 +50,11 @@ def generate_hex_list(
     uniform. This ensures that colour transitions feel smooth and natural
     across the entire gradient. Returns colours as list of hex code strings.
 
+    Note: It is assumed the user wants a discrete number (`n_stops`) of points,
+    so no warning is given when `n_stops` is small (unlike in the
+    `generate_cmap` function). However, if these hexes are being used to create
+    a continuous colour ramp, it is recommended to use `n_stops`>=128.
+
     Parameters
     ----------
     start_hex : str

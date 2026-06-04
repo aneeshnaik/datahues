@@ -9,7 +9,8 @@ A library for generating perceptually uniform colour ramps using the Oklab colou
 ## Core Functions
 
 ### `generate_hex_list(start_hex, end_hex, n_stops)`
-Between start and end colours, generates a list of hex colour codes forming a smooth colour ramp.
+
+Between start and end colours, generates a list of hex colour codes representing points along a smooth colour ramp. It is assumed the user wants a discrete number (`n_stops`) of points, so no warning is given when `n_stops` is small (unlike in `generate_cmap` below). However, if these hexes are being used to create a continuous colour ramp, it is recommended to use `n_stops`>=128.
 
 - **Parameters:** 
   - `start_hex`: Starting colour as hex code (e.g., `"#FF0000"`)
@@ -18,6 +19,7 @@ Between start and end colours, generates a list of hex colour codes forming a sm
 - **Returns:** List of hex colour codes representing the gradient
 
 ### `generate_cmap(start_hex, end_hex, n_stops=512, name="custom_cmap")`
+
 Betweem start and end colours, creates a Matplotlib `LinearSegmentedColormap` object, forming a smooth colour ramp.
 
 - **Returns:** `LinearSegmentedColormap` object ready to use in matplotlib visualisation
@@ -40,9 +42,6 @@ This approach ensures that visual transitions between colours feel smooth and na
 
 - #TODO git tag versioning
 - #TODO test suite
-- #TODO tidy up / separate utils
-- #TODO docstrings in public functions
-- #TODO write README
 - #TODO add license file
 - #TODO publish to pypi
 - #TODO publish to conda-forge
