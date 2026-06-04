@@ -42,7 +42,6 @@ This approach ensures that visual transitions between colours feel smooth and na
 
 - #TODO git tag versioning
 - #TODO test suite
-- #TODO add license file
 - #TODO publish to pypi
 - #TODO publish to conda-forge
 
