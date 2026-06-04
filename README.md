@@ -1,6 +1,11 @@
 # `datahues`
 
-A library for generating perceptually uniform colour ramps using the Oklab colour space.
+**Generate perceptually uniform colour ramps for data visualisation.**
+
+[![Test](https://github.com/aneeshnaik/datahues/actions/workflows/test.yaml/badge.svg)](https://github.com/aneeshnaik/datahues/actions/workflows/test.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/aneeshnaik/datahues/badge.svg?branch=main)](https://coveralls.io/github/aneeshnaik/datahues?branch=main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/aneeshnaik/datahues/blob/main/LICENSE)
+
 
 ## Overview
 
@@ -49,5 +54,3 @@ This approach ensures that visual transitions between colours feel smooth and na
 - #TODO publish to conda-forge
 - #TODO example (with picture!) in README
 - #TODO blogpost
-- #TODO set up test coverage
-- #TODO github badges
