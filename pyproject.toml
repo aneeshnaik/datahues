@@ -23,3 +23,5 @@ dynamic = ["version"]
 [tool.setuptools]
 package-dir = {"" = "src"}
 packages = {find = {where = ["src"]}}
+
+[tool.setuptools_scm]
