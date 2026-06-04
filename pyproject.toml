@@ -1,13 +1,24 @@
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "datahues"
-version = "0.1.0"
-description = "Colour management utilities for data visualisations"
+description = "Generate perceptually uniform colour ramps for data visualisation."
 requires-python = ">=3.9"
-dependencies = []
+readme = "README.md"
+dependencies = [
+  "numpy>=1.17",
+  "matplotlib>=3.3",
+]
+keywords = ["python", "data", "visualization", "visualisation", "color", "color"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dynamic = ["version"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
