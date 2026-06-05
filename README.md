@@ -74,5 +74,6 @@ The list below has some ideas for future features to be implemented in `datahues
 
 - Colour sequences with more than 2 colours.
 - Alternative colour spaces (beyond Oklab)
+- Alternative input types (besides hex codes), e.g. matplotlib colour names or RGB tuples.
 
 Feel free to get in touch / make an issue with other requests.
