@@ -17,6 +17,8 @@
 
 ## Core Functions
 
+`datahues` just has two public functions: `generate_hex_list` and `generate_cmap`. Both generate a sequential colour ramp given start and end colour hexes. The former returns a list of hexes, and the latter returns a `matplotlib` `LinearSegmentedColormap` object.
+
 ### `generate_hex_list(start_hex, end_hex, n_stops=512)`
 
 Between start and end colours, generates a list of hex colour codes representing points along a smooth colour ramp. It is assumed the user wants a discrete number (`n_stops`) of points, so no warning is given when `n_stops` is small (unlike in `generate_cmap` below). However, if these hexes are being used to create a continuous colour ramp, it is recommended to use `n_stops`>=128.
@@ -29,7 +31,7 @@ Between start and end colours, generates a list of hex colour codes representing
 
 ### `generate_cmap(start_hex, end_hex, n_stops=512, name="interp_ramp")`
 
-Betweem start and end colours, creates a Matplotlib `LinearSegmentedColormap` object, forming a smooth colour ramp.
+Betweem start and end colours, creates a `matplotlib` `LinearSegmentedColormap` object, forming a smooth colour ramp.
 
 - **Parameters:**
   - `start_hex`, `end_hex`, `n_stops`: As above
