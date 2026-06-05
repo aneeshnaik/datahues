@@ -9,7 +9,7 @@
 
 ## Overview
 
-`datahues` creates smooth, visually consistent colour gradients from a start colour to an end colour. Unlike simple RGB or HSL interpolation, which can produce perceptually uneven ramps with visible banding, this library leverages the **Oklab colour space** — a perceptually uniform space where equal mathematical changes correspond to equal perceptual colour differences.
+`datahues` creates smooth, [perceptually uniform](https://en.wikipedia.org/wiki/Color_appearance_model) colour gradients from a start colour to an end colour. Unlike simple RGB or HSL interpolation, which can produce visually uneven ramps, this library leverages the [**Oklab colour space**](https://en.wikipedia.org/wiki/Oklab_color_space): a perceptually uniform space where equal mathematical changes correspond to equal perceptual colour differences.
 
 ![Comparison of RGB vs Oklab interpolation](README_assets/ramp_comparison.png)
 
